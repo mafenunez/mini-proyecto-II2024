@@ -1,7 +1,7 @@
 {
     "id": "8AA10B39",
-    "path": null,
-    "project_path": null,
+    "path": "C:/Users/LENOVO/Documents/GitHub/mini-proyecto-II2024/processing/intento.R",
+    "project_path": "processing/intento.R",
     "type": "r_source",
     "hash": "0",
     "contents": "",
@@ -15,11 +15,15 @@
         "Source": "Source"
     },
     "folds": "",
-    "lastKnownWriteTime": 2019027701424528520,
-    "encoding": "",
+    "lastKnownWriteTime": 1730500248,
+    "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
+<<<<<<< Updated upstream
     "last_content_update": 1730468234009,
+=======
+    "last_content_update": 1730500248077,
+>>>>>>> Stashed changes
     "read_only": false,
     "read_only_alternatives": []
 }
