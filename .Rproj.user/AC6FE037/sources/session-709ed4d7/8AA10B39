@@ -3,23 +3,25 @@
     "path": null,
     "project_path": null,
     "type": "r_source",
-    "hash": "0",
+    "hash": "1524774831",
     "contents": "",
-    "dirty": false,
+    "dirty": true,
     "created": 1730468234009.0,
     "source_on_save": false,
     "relative_order": 1,
     "properties": {
         "tempName": "Untitled1",
         "source_window_id": "",
-        "Source": "Source"
+        "Source": "Source",
+        "cursorPosition": "20,1",
+        "scrollLine": "0"
     },
     "folds": "",
     "lastKnownWriteTime": 2019027701424528520,
     "encoding": "",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1730468234009,
+    "last_content_update": 1730498600787,
     "read_only": false,
     "read_only_alternatives": []
 }
