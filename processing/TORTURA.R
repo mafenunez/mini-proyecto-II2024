@@ -29,14 +29,16 @@ sacar_letras <- function(nombre_cancion, nombre_artista){
 plain_text <- cat(paste(letra$line, collapse =  "\n"))
 
 # crear listados de letras
-  # evaluar si hacer ambas en el mismo for o dos operaciones distintas
-lista_letras <- list()
+
+lista_letras_2010 <- list()
+
 for (i in 1 : nrow(canciones_2010)) {
   lyrics <- sacar_letras(canciones_2010$nombre_cancion[i], canciones_2010$nombre_artista[i])
-  lista_letras <- append(lista_letras, lyrics)
+  lista_letras_2010 <- append(lista_letras_2010, lyrics)
 }
 
 lista_letras_1960 <- list()
+
 for (i in 1 : nrow(canciones_1960)) {
   lyrics <- sacar_letras(canciones_1960$nombre_cancion[i], canciones_1960$nombre_artista[i])
   lista_letras_1960 <- append(lista_letras_1960, lyrics)
@@ -53,17 +55,11 @@ for (i in 1 : nrow(canciones_1960)) {
 # client_id = hgk1jQpyfHCXTJY8y-3G1DXIg5dkuX9vkcrSdiQ133r8tkKkMeqG4fsE2pELIL-l
 # client_secret = vn_kz-w8_wU-y2dNMIWTh4SPXRpOb1HHV8sqej80gxkxkq1lfTqyOT5nd_Sb_yHdNoWoA0ucrl9OjNoAAhthAg
 # client_access_token = QUzGFFvhghgRu7LhZ9Kmq4hd9eQATRLIiyoshXgXwo2yKZkxQcgMfu1ci-jXHvJF
-  
-  lista_canciones_2010 <- as.list(canciones_2010)
-  lista_canciones_2010[[2]][1]
 
   # get lyrics
   get_lyrics_search(artist_name = "J Balvin & Bad Bunny",
                     song_title = "LA CANCIÓN")  
   
-  print(letras, n = 23)
-  
   sacar_letras(canciones_1960[[1]][28], canciones_1960[[2]][28])
-  
   
   search_song(paste0("estas cosas del amor", "leonardo favio"))
