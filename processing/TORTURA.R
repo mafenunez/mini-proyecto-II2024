@@ -19,11 +19,14 @@ canciones_1960 <- read.csv2("canciones1960.csv", encoding = "utf-8")
   # borrar paréntesis y signos de puntuación / solo dejar texto
 sacar_letras <- function(nombre_cancion, nombre_artista){
   cancion <- search_song(paste0(nombre_cancion, nombre_artista))
-  url_cancion <- cancion$song_lyrics_url[1]
+  url_cancion <- cancion$song_lyrics_url[1] #de todas las opciones, se selecciona la primera opción 
   letra <- get_lyrics_url(url_cancion)
   plain_text <- paste(letra$line, collapse = " ")
   return(plain_text)
 }
+
+# codigo para seaprar por linea 
+plain_text <- cat(paste(letra$line, collapse =  "\n"))
 
 # crear listados de letras
   # evaluar si hacer ambas en el mismo for o dos operaciones distintas
