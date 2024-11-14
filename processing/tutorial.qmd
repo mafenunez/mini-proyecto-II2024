@@ -18,21 +18,12 @@ format:
     title-block-banner: true
 editor: visual
 ---
-<style>
-.logo {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-}
-</style>
-
-<img class="logo" src="edumer.png" width="250" height="190">
-
-<div style="text-align: justify">
 
 # Relevancia
 
 # Fuente de información: Genius
+
+Genius, es una aplicación y página web fundada en el año 2009, considerada como una de las bases de datos de letras y conocimientos musicales más completas y consolidadas actualmente. Si bien en sus inicios se centraba en exhibir letras de canciones de Rap y Hip-Hop, con el pasar de los años decidió ampliar su alcance, abarcando así diversos géneros y llegando a ofrecer un extenso repertorio de más de 8 millones de canciones de diferentes estilos e idiomas. Adicionalmente, la plataforma no solo proporciona letras de canciones, sino también información completa sobre álbumes, artistas, historias detrás de las composiciones, noticias de última hora, entre otros (Genius, 2009).
 
 # Código para extraer la información
 
@@ -79,6 +70,44 @@ sacar_letras <- function(nombre_cancion, nombre_artista){
 }
 ```
 
-## 
+```{r, letras, echo=TRUE}
+# crear listados de letras
+
+lista_letras_2010 <- list()
+
+for (i in 1 : nrow(canciones_2010)) {
+  lyrics <- sacar_letras(canciones_2010$nombre_cancion[i], canciones_2010$nombre_artista[i])
+  lista_letras_2010 <- append(lista_letras_2010, lyrics)
+}
+
+lista_letras_1960 <- list()
+
+for (i in 1 : nrow(canciones_1960)) {
+  lyrics <- sacar_letras(canciones_1960$nombre_cancion[i], canciones_1960$nombre_artista[i])
+  lista_letras_1960 <- append(lista_letras_1960, lyrics)
+}
+
+```
+
+```{r, echo=TRUE}
+
+# get lyric bigrams
+  unnest_tokens(bigram, line, token = "ngrams", n = 2) %>%
+  # look for good morning
+  filter(bigram == "good morning") %>% 
+  # count bigram frequency
+  nrow()
+```
+
+```{r, echo=TRUE}
+# get lyrics
+  get_lyrics_search(artist_name = "J Balvin & Bad Bunny",
+                    song_title = "LA CANCIÓN")  
+  
+  sacar_letras(canciones_1960[[1]][28], canciones_1960[[2]][28])
+  
+  search_song(paste0("estas cosas del amor", "leonardo favio"))
+```
+
 
 # Análisis descriptivo
