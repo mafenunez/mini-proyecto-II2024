@@ -1,17 +1,84 @@
 ---
-title: "Tutorial"
-format: html
+title: "Análisis comparativo canciones románticas en los años 60s y la actualidad"
+author: Francisca Espinoza, María Fernanda Núñez y Beatriz Pinto
+subtitle: Curso Métodos computacionales para las Ciencias Sociales
+fontsize: 11pt
+format:
+  html:
+    toc: true
+    toc-location: right
+    toc-depth: 2
+    toc-expand: 2
+    toc-title: Contenidos
+    number-sections: false
+    number-depth: 6
+    theme:
+      - sandstone
+      - pp.scss
+    title-block-banner: true
 editor: visual
 ---
+<style>
+.logo {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+}
+</style>
 
-# Titulo 
+<img class="logo" src="edumer.png" width="250" height="190">
 
-## Relevancia 
+<div style="text-align: justify">
 
-## Descripción de la fuente de información: Genius 
+# Relevancia
 
-## Código para extraer la información 
+# Fuente de información: Genius
 
-## Explicación de los procedimientos 
+# Código para extraer la información
 
-## Breve y general análisis descriptivo 
+Este código inicial es necesario para comenzar a trabajar en la sesión. Primero, instalamos el paquete "remotes" que utilizaremos para descargar el paquete "geniusr" desde github.
+
+```{r, librerias, echo=TRUE}
+# instalar paquetes
+#install.packages("remotes")
+#library(remotes)
+
+#remotes::install_github("giovanni-cutri/geniusr")
+library(geniusr)
+
+```
+
+Con el paquete "geniusr" cargado,
+
+```{r, token, echo=T}
+# crear token
+Sys.setenv(GENIUS_API_TOKEN = "WdpkaOPzecLuH0-EF30G2mF-i2jGtzCWydOUWwSnoILDwHK5OTc5Cc2NH9nRTMWG")
+
+print(Sys.getenv("GENIUS_API_TOKEN"))
+genius_token()
+```
+
+```{r, canciones, echo=TRUE}
+# subimos canciones
+canciones_2010 <- read.csv2("../input/data/canciones2010.csv", encoding = "utf-8")
+canciones_1960 <- read.csv2("../input/data/canciones1960.csv", encoding = "utf-8")
+
+```
+
+## Función 
+
+```{r, funcion, echo=TRUE}
+# crear función
+  # borrar paréntesis y signos de puntuación / solo dejar texto
+sacar_letras <- function(nombre_cancion, nombre_artista){
+  cancion <- search_song(paste0(nombre_cancion, nombre_artista))
+  url_cancion <- cancion$song_lyrics_url[1] #de todas las opciones, se selecciona la primera opción 
+  letra <- get_lyrics_url(url_cancion)
+  plain_text <- paste(letra$line, collapse = " ")
+  return(plain_text)
+}
+```
+
+## 
+
+# Análisis descriptivo
