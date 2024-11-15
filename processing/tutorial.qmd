@@ -39,15 +39,18 @@ library(geniusr)
 
 ```
 
-Con el paquete "geniusr" cargado,
+Con el paquete "geniusr" cargado, creamos el token que nos permitirá trabajar con la API de Genius. 
 
 ```{r, token, echo=T}
 # crear token
 Sys.setenv(GENIUS_API_TOKEN = "WdpkaOPzecLuH0-EF30G2mF-i2jGtzCWydOUWwSnoILDwHK5OTc5Cc2NH9nRTMWG")
 
+# revisar el token
 print(Sys.getenv("GENIUS_API_TOKEN"))
 genius_token()
 ```
+
+Cargamos las bases de datos con las canciones. La base con las canciones actuales "canciones_2010" y la base con las canciones antiguas "canciones_1960". 
 
 ```{r, canciones, echo=TRUE}
 # subimos canciones
@@ -56,20 +59,44 @@ canciones_1960 <- read.csv2("../input/data/canciones1960.csv", encoding = "utf-8
 
 ```
 
+El argumento encoding...
+
 ## Función 
+
+A continuación, creamos la función que nos permitirá extraer las letras. 
+
+Sus parametros son el nombre de la canción y el nombre del artirsta. 
 
 ```{r, funcion, echo=TRUE}
 # crear función
   # borrar paréntesis y signos de puntuación / solo dejar texto
+
+# indicamos los parámetros
 sacar_letras <- function(nombre_cancion, nombre_artista){
+  
+# alojamos la canción en un objeto 
   cancion <- search_song(paste0(nombre_cancion, nombre_artista))
+  
+# alojamos el url de la canción en un objeto    
   url_cancion <- cancion$song_lyrics_url[1] #de todas las opciones, se selecciona la primera opción 
+  
+# alojamos la letra de la canción en un objeto, utilizando el url generado   
   letra <- get_lyrics_url(url_cancion)
+
+# ordenamos el texto, agrando un espaciado     
   plain_text <- paste(letra$line, collapse = " ")
+  
+# retornamos el texto plano de la canción   
   return(plain_text)
 }
 ```
 
+En el cógido presnetado, se observa que, de mandera secuencial, se generan los objetos necesarios para obtener el texto plano de la canción. 
+
+
+--- 
+
+## 
 ```{r, letras, echo=TRUE}
 # crear listados de letras
 
@@ -89,6 +116,8 @@ for (i in 1 : nrow(canciones_1960)) {
 
 ```
 
+
+
 ```{r, echo=TRUE}
 
 # get lyric bigrams
@@ -99,6 +128,8 @@ for (i in 1 : nrow(canciones_1960)) {
   nrow()
 ```
 
+
+
 ```{r, echo=TRUE}
 # get lyrics
   get_lyrics_search(artist_name = "J Balvin & Bad Bunny",
@@ -108,6 +139,6 @@ for (i in 1 : nrow(canciones_1960)) {
   
   search_song(paste0("estas cosas del amor", "leonardo favio"))
 ```
-
-
+ 
+Limpiar 
 # Análisis descriptivo
