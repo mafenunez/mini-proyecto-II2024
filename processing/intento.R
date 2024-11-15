@@ -1,7 +1,0 @@
-
-#Instalar y cargar paquete de genius
-
-install.packages("geniusr")
-library(geniusr)
-
-# Token
