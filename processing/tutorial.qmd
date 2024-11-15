@@ -243,3 +243,16 @@ palabras_letra_1960 %>% kableExtra::kable(
 <br/>
 
 Es posible observar preliminarmente que las palabras "corazón" y "fiel" se repiten más veces en las canciones de la década de 2010 que en la década de 1960. Al contrario, en las canciones del 1960, aparecen con más frecuencia las palabras "mía", "rosas" y "te quiero". La palabra "amor" se observa en una frecuencia similar para las caciones de ambas décadas.
+
+--- 
+# Referencias 
+
+- Apple Music. (2024). 2010s Love Song Essentials [Lista de Reproducción]. Apple  Music. Obtenido de <https://music.apple.com/cl/playlist/2010s-love-song-essentials/pl.a4e1706901964f46b1abe8dd0e16e2e0?l=en-GB>
+- Apple Music. (2024). ’60s Love Song Essentials [Lista de Reproducción]. Apple  Music. Obtenido de <https://music.apple.com/cl/playlist/60s-love-song-essentials/pl.048e966cda9340fe9ce76efa890bf055?l=en-GB>
+- Genius. (27 de Agosto de 2009). Genius: About Us. Obtenido de <https://genius.com/Genius-about-genius-annotated>
+- Martínez, D. (2013). Música y representaciones sociales de la sexualidad: un estudio de caso sobre los jóvenes reggaetoneros en el Distrito Federal. Obtenido de: <https://hdl.handle.net/11191/5647>
+- Ospina, S. & Suárez, M. (2021). Para amarte, necesito una razón: configuraciones del discurso amoroso en las canciones románticas en español.
+- Sánchez, A. C. (2011). Las diferencias y similitudes semánticas existentes en veinte letras de amor de reggaetón y bolero puertorriqueños. Recuperado de: <http://hdl.handle.net/10554/5935>
+
+
+ 
