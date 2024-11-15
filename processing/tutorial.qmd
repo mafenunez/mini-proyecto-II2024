@@ -1,8 +1,10 @@
 ---
-title: "Análisis comparativo canciones románticas en los años 60s y la actualidad"
+title: "Imaginarios sobre el amor: Análisis comparativo de canciones románticas con 50 años de diferencia (1960-2010)"
 author: Francisca Espinoza, María Fernanda Núñez y Beatriz Pinto
 subtitle: Curso Métodos computacionales para las Ciencias Sociales
 fontsize: 11pt
+#bibliography: "../input/mini-proyecto.bib"
+#csl: "input/bib/apa6.csl"
 format:
   html:
     toc: true
@@ -14,12 +16,18 @@ format:
     number-depth: 6
     theme:
       - sandstone
-      - pp.scss
     title-block-banner: true
 editor: visual
 ---
 
 # Relevancia
+
+En el marco del presente estudio, corresponde preguntarse por qué sería relevante realizar un estudio comparativo de canciones románticas de dos décadas lejanas. 
+
+En primera instancia, se reconoce la importancia del lenguaje y la música como un elemento cultural que refleja costumbres, tradiciones, formas de pensamiento y actividades cotidianas presentes en una sociedad determinada (Sánchez, 2011). Siguiendo esta línea, Martínez (2013) expone la idea de que las producciones musicales se encuentran inmersas en un espacio y un tiempo histórico determinado, lo cual lleva a que estas piezas sirvan como reflejo de las realidades y características de una cultura específica. 
+
+En este marco y en lo que respecta a este estudio, a partir de lo planteado por las autoras, es posible afirmar que el análisis de las canciones románticas permite identificar prácticas, creencias y valores presentes en una sociedad respecto al amor, las relaciones de pareja, y el rol de los amantes, es decir, la música como una materialización de los idearios del amor a través de un artefacto cultural construído discursivamente: la música (Ospina y Suárez, 2021). Asimismo, un análisis comparativo entre las letras de canciones de dos décadas diferentes y lejanas como lo son 1960 y 2010, nos permitiría observar si existen transformaciones en lo que se entiende por amor, en cómo son las dinámicas de pareja en cada una de las épocas, en qué se valora en una relación, etc. Entendiendo, a priori, que entre estos dos momentos históricos han existido importantes cambios sociales relacionados a la libertad de la mujer, la sexualidad, nuevas formas de relacionarse románticamente, etc. 
+
 
 # Fuente de información: Genius
 
@@ -30,46 +38,64 @@ Genius, es una aplicación y página web fundada en el año 2009, considerada co
 Este código inicial es necesario para comenzar a trabajar en la sesión. Primero, instalamos el paquete "remotes" que utilizaremos para descargar el paquete "geniusr" desde github.
 
 ```{r, librerias, echo=TRUE}
-# instalar paquetes
-#install.packages("remotes")
-#library(remotes)
+# instalar paquete de ser necesario:
 
-#remotes::install_github("giovanni-cutri/geniusr")
+if (! require("remotes")) install.packages("remotes")
+
+# cargamos el paquete: 
+library(remotes)
+
+# el paquete "geniusr" presenta algunos errores, por lo que se debe instalar una versión más actualizada desde Github:
+remotes::install_github("giovanni-cutri/geniusr")
+
+
+```
+
+```{r, echo=TRUE}
+# cargamos el paquete:
 library(geniusr)
-
 ```
 
 Con el paquete "geniusr" cargado, creamos el token que nos permitirá trabajar con la API de Genius. 
 
+De ese modo, en el paso siguiente se debe crear una API y un token desde la página de Genius para poder extraer las letras. Para ello, es necesario crear una cuenta e identificar el valor de *"client access token"*.
+
 ```{r, token, echo=T}
-# crear token
+# crear token:
 Sys.setenv(GENIUS_API_TOKEN = "WdpkaOPzecLuH0-EF30G2mF-i2jGtzCWydOUWwSnoILDwHK5OTc5Cc2NH9nRTMWG")
 
-# revisar el token
+# revisar el token:
 print(Sys.getenv("GENIUS_API_TOKEN"))
 genius_token()
 ```
 
-Cargamos las bases de datos con las canciones. La base con las canciones actuales "canciones_2010" y la base con las canciones antiguas "canciones_1960". 
+Con el token habilitado, corresponde cargar los data frames sobre los que se va a trabajar.
+
+Cargamos los data frames con las canciones. La base con las canciones actuales "canciones_2010" y la base con las canciones antiguas "canciones_1960". 
 
 ```{r, canciones, echo=TRUE}
 # subimos canciones
+
+# cargamos data frame 2010:
 canciones_2010 <- read.csv2("../input/data/canciones2010.csv", encoding = "utf-8")
+
+# cargamos data frame 1960:
 canciones_1960 <- read.csv2("../input/data/canciones1960.csv", encoding = "utf-8")
 
 ```
 
-El argumento encoding...
+El argumento encoding es necesario para indicar al software el formato específico en que se ecuentra nuestro archivo .csv.
+
 
 ## Función 
 
-A continuación, creamos la función que nos permitirá extraer las letras. 
-
-Sus parametros son el nombre de la canción y el nombre del artirsta. 
+A continuación, creamos la función que nos permitirá extraer las letras. Sus parametros son el *nombre de la canción* y el *nombre del artista*. 
 
 ```{r, funcion, echo=TRUE}
 # crear función
-  # borrar paréntesis y signos de puntuación / solo dejar texto
+
+# cargamos librería para usar la funciones para procesar el texto
+library(stringr)
 
 # indicamos los parámetros
 sacar_letras <- function(nombre_cancion, nombre_artista){
@@ -86,59 +112,134 @@ sacar_letras <- function(nombre_cancion, nombre_artista){
 # ordenamos el texto, agrando un espaciado     
   plain_text <- paste(letra$line, collapse = " ")
   
+# removemos signos de puntuación y otros símbolos para simplificar la lectura
+  plain_text <- str_remove_all(plain_text, pattern = "\\p{P}")
+  
 # retornamos el texto plano de la canción   
   return(plain_text)
 }
 ```
 
-En el cógido presnetado, se observa que, de mandera secuencial, se generan los objetos necesarios para obtener el texto plano de la canción. 
+En el cógido presentado, se observa que, de manera secuencial, se generan los objetos necesarios para obtener el texto plano de la canción. 
 
 
 --- 
 
-## 
+## Iteración con ciclo "for"
+
+Finalmente, a partir del texto plano generado, se crea un listado de letras mediante la iteracion con el comando "for".
+
 ```{r, letras, echo=TRUE}
-# crear listados de letras
-
+# crear listados vacíos de letras para cada década:
 lista_letras_2010 <- list()
+lista_letras_1960 <- list()
 
+```
+
+Luego, se iterán ambas listas con el ciclo "for".
+
+```{r, echo=TRUE}
+
+# Se itera con ciclo "for" para el listado de canciones del 2010:
 for (i in 1 : nrow(canciones_2010)) {
   lyrics <- sacar_letras(canciones_2010$nombre_cancion[i], canciones_2010$nombre_artista[i])
   lista_letras_2010 <- append(lista_letras_2010, lyrics)
 }
 
-lista_letras_1960 <- list()
-
+# Se itera con ciclo "for" para el listado de canciones del 1960:
 for (i in 1 : nrow(canciones_1960)) {
   lyrics <- sacar_letras(canciones_1960$nombre_cancion[i], canciones_1960$nombre_artista[i])
   lista_letras_1960 <- append(lista_letras_1960, lyrics)
 }
-
 ```
 
+De esta manera, se crean dos listas de 30 letras correspondientes a cada década, que nos servirán para el posterior análisis comparativo.
 
+---
 
-```{r, echo=TRUE}
-
-# get lyric bigrams
-  unnest_tokens(bigram, line, token = "ngrams", n = 2) %>%
-  # look for good morning
-  filter(bigram == "good morning") %>% 
-  # count bigram frequency
-  nrow()
-```
-
-
-
-```{r, echo=TRUE}
-# get lyrics
-  get_lyrics_search(artist_name = "J Balvin & Bad Bunny",
-                    song_title = "LA CANCIÓN")  
-  
-  sacar_letras(canciones_1960[[1]][28], canciones_1960[[2]][28])
-  
-  search_song(paste0("estas cosas del amor", "leonardo favio"))
-```
- 
-Limpiar 
 # Análisis descriptivo
+
+A continuación se muestran tablas con frecuencias absolutas de algunas palabras del texto. Esta corresponde a una forma más manual y larga de hacerlo, que es previsional para el presente trabajo.
+
+El código consiste en buscar palabras específicas con "str_count()" del paquete "stringr" y disponerlas en una tabla.
+
+La selección de palabras es azarosa y preliminar. No se considera si estas son las palabras más frecuentes del texto, solo se presenta como un ejercicio preliminar de análisis de la información extraída.
+
+```{r, echo=TRUE}
+
+# texto completo para 1960:
+texto_completo_1960 <- tolower(str_c(lista_letras_1960, collapse = " "))
+
+# calcular la frecuencia absoluta de la palabra amor:
+veces_amor_1960 <- str_count(texto_completo_1960, "\\bamor\\b")
+
+# calcular la frecuencia absoluta de la palabra mía:
+veces_mia_1960 <- str_count(texto_completo_1960, "\\bmía\\b")
+
+# calcular la frecuencia absoluta de la palabra te quiero:
+veces_tequiero_1960 <- str_count(texto_completo_1960, "\\bte quiero\\b")
+
+# calcular la frecuencia absoluta de la palabra fiel:
+veces_fiel_1960 <- str_count(texto_completo_1960, "\\bfiel\\b")
+
+# calcular la frecuencia absoluta de la palabra rosas:
+veces_rosas_1960 <- str_count(texto_completo_1960, "\\brosas\\b")
+
+# calcular la frecuencia absoluta de la palabra corazón:
+veces_corazon_1960 <- str_count(texto_completo_1960, "\\bcorazón\\b")
+
+# agrupamos los vectores en un data frame:
+palabras_letra_1960 <- data.frame(veces_amor_1960, veces_corazon_1960, veces_mia_1960, veces_fiel_1960, veces_rosas_1960, veces_tequiero_1960)
+
+ 
+# texto completo para 2010:
+texto_completo_2010 <- tolower(str_c(lista_letras_2010, collapse = " "))
+
+# calcular la frecuencia absoluta de la palabra amor:
+veces_amor_2010 <- str_count(texto_completo_2010, "\\bamor\\b")
+
+# calcular la frecuencia absoluta de la palabra mía:
+veces_mia_2010 <- str_count(texto_completo_2010, "\\bmía\\b")
+
+# calcular la frecuencia absoluta de la palabra te quiero:
+veces_tequiero_2010 <- str_count(texto_completo_2010, "\\bte quiero\\b")
+
+# calcular la frecuencia absoluta de la palabra fiel:
+veces_fiel_2010 <- str_count(texto_completo_2010, "\\bfiel\\b")
+
+# calcular la frecuencia absoluta de la palabra rosas:
+veces_rosas_2010 <- str_count(texto_completo_2010, "\\brosas\\b")
+
+# calcular la frecuencia absoluta de la palabra corazón:
+veces_corazon_2010 <- str_count(texto_completo_2010, "\\bcorazón\\b")
+
+# agrupamos los vectores en un data frame:
+palabras_letra_2010 <- data.frame(veces_amor_2010, veces_corazon_2010, veces_mia_2010, veces_fiel_2010, veces_rosas_2010, veces_tequiero_2010)
+
+
+```
+
+El siguiente código nos permite disponer la información calculada en tablas:
+
+```{r, echo=TRUE}
+
+# instalar el paquete de ser necesario:
+if (! require("kableExtra")) install.packages("kableExtra")
+
+# cargamos el paquete:
+library(kableExtra)
+
+# generamos tabla para las letras de 2010:
+palabras_letra_2010 %>% kableExtra::kable(
+  # ajustamos los títulos de las columnas:
+    col.names = c("Frecuencia: amor", "Frecuencia: corazón", "Frecuencia: mía", "Frecuencia: fiel", "Frecuencia: rosas", "Frecuencia: te quiero"))
+
+# generamos tabla para las letras de 1960:
+palabras_letra_1960 %>% kableExtra::kable(
+  # ajustamos los títulos de las columnas:
+    col.names = c("Frecuencia: amor", "Frecuencia: corazón", "Frecuencia: mía", "Frecuencia: fiel", "Frecuencia: rosas", "Frecuencia: te quiero"))
+```
+
+<br/>
+
+Es posible observar preliminarmente que las palabras "corazón" y "fiel" se repiten más veces en las canciones de la década de 2010 que en la década de 1960. Al contrario, en las canciones del 1960, aparecen con más frecuencia las palabras "mía", "rosas" y "te quiero". La palabra "amor" se observa en una frecuencia similar para las caciones de ambas décadas.
