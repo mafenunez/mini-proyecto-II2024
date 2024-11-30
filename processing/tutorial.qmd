@@ -255,7 +255,7 @@ p2010 <- objeto_palabra(dfm_2010)
 
 
 ```{r, plot-freq-1960, echo=TRUE}
-plot<-ggplot(p1960,aes(x=palabra,y=freq))+
+ggplot(p1960,aes(x=palabra,y=freq))+
   geom_bar(stat = "identity", 
            color="palevioletred4", 
            fill = "palevioletred") +
@@ -263,25 +263,25 @@ plot<-ggplot(p1960,aes(x=palabra,y=freq))+
   labs(title = "Frecuencias palabras más repetidas en las canciones de 1960", 
       x = "Palabras", 
       y = "Frecuencia",
-      caption = "Fuente: Elaboración propia.") +
-  theme(axis.text.x = element_text(angle = 40, hjust = 1),  # Rotar las etiquetas del eje X 
+      caption = "Fuente: Elaboración propia.")  +
+  theme_bw()  +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
         plot.title = element_text(size = 12,
                                   face = "italic", 
-                                  color = "black", hjust = 0.5),
+                                  color = "black", 
+                                  hjust = 0.5),
         plot.margin = margin(t = 20, r = 20, b = 20, l = 20)) +
   geom_text(aes(label = paste0(round(freq, 1))), 
             stat = "identity", 
             vjust = -0.5, 
             color = "black",
             position = position_dodge(width=0.9), 
-            size = 4) +
-  theme_bw() 
+            size = 4)
 
-plot
 ```
 
 ```{r, plot-freq-2010, echo=TRUE}
-plot0<-ggplot(p2010,aes(x=palabra,y=freq))+
+ggplot(p2010,aes(x=palabra,y=freq))+
   geom_bar(stat = "identity", 
            color="palevioletred4", 
            fill = "palevioletred1") +
@@ -290,20 +290,19 @@ plot0<-ggplot(p2010,aes(x=palabra,y=freq))+
        x = "Palabras", 
        y = "Frecuencia",
        caption = "Fuente: Elaboración propia.") +
+  theme_bw()  +
   theme(axis.text.x = element_text(angle = 45, hjust = 1), 
         plot.title = element_text(size = 12,
                                   face = "italic", 
-                                  color = "black", hjust = 0.5),
+                                  color = "black", 
+                                  hjust = 0.5),
         plot.margin = margin(t = 20, r = 20, b = 20, l = 20)) +
   geom_text(aes(label = paste0(round(freq, 1))), 
             stat = "identity", 
             vjust = -0.5, 
             color = "black",
             position = position_dodge(width=0.9), 
-            size = 4) +
-  theme_bw() 
-
-plot0
+            size = 4)
 ```
 
 
@@ -336,7 +335,14 @@ generar_tabla <- function(contexto_letras_list, i) {
   tabla <- letra %>% knitr::kable(format = "html",
                                   aling = "c",
                                   col.names = c("Oración anterior", "Palabra", "Oración posterior")) %>% 
-    kableExtra::kable_material()
+    kableExtra::kable_minimal() %>% 
+    kableExtra::row_spec(0, background = "lightpink") %>%
+    kableExtra::column_spec(1, background = "mistyrose")  %>%
+    kableExtra::column_spec(2, background = "mistyrose", bold = TRUE )  %>%
+    kableExtra::column_spec(3, background = "mistyrose")
+  
+    
+    
   return(tabla)
 }
 
