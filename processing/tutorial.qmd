@@ -9,8 +9,8 @@ format:
   html:
     toc: true
     toc-location: right
-    toc-depth: 2
-    toc-expand: 2
+    toc-depth: 6
+    toc-expand: 6
     toc-title: Contenidos
     number-sections: false
     number-depth: 6
@@ -22,15 +22,13 @@ editor: visual
 
 # Relevancia
 
-En el marco del presente estudio, corresponde preguntarse por qué sería relevante realizar un estudio comparativo de canciones románticas de dos décadas lejanas. 
+En el marco del presente estudio, corresponde preguntarse por qué sería relevante realizar un estudio comparativo de canciones románticas de dos décadas lejanas.
 
-En primera instancia, se reconoce la importancia del lenguaje y la música como un elemento cultural que refleja costumbres, tradiciones, formas de pensamiento y actividades cotidianas presentes en una sociedad determinada (Sánchez, 2011). Siguiendo esta línea, Martínez (2013) expone la idea de que las producciones musicales se encuentran inmersas en un espacio y un tiempo histórico determinado, lo cual lleva a que estas piezas sirvan como reflejo de las realidades y características de una cultura específica. 
+En primera instancia, se reconoce la importancia del lenguaje y la música como un elemento cultural que refleja costumbres, tradiciones, formas de pensamiento y actividades cotidianas presentes en una sociedad determinada (Sánchez, 2011). Siguiendo esta línea, Martínez (2013) expone la idea de que las producciones musicales se encuentran inmersas en un espacio y un tiempo histórico determinado, lo cual lleva a que estas piezas sirvan como reflejo de las realidades y características de una cultura específica.
 
-En este marco y en lo que respecta a este estudio, a partir de lo planteado por las autoras, es posible afirmar que el análisis de las canciones románticas permite identificar prácticas, creencias y valores presentes en una sociedad respecto al amor, las relaciones de pareja, y el rol de los amantes, es decir, la música como una materialización de los idearios del amor a través de un artefacto cultural construído discursivamente: la música (Ospina y Suárez, 2021). Asimismo, un análisis comparativo entre las letras de canciones de dos décadas diferentes y lejanas como lo son 1960 y 2010, nos permitiría observar si existen transformaciones en lo que se entiende por amor, en cómo son las dinámicas de pareja en cada una de las épocas, en qué se valora en una relación, etc. Entendiendo, a priori, que entre estos dos momentos históricos han existido importantes cambios sociales relacionados a la libertad de la mujer, la sexualidad, nuevas formas de relacionarse románticamente, etc. 
+En este marco y en lo que respecta a este estudio, a partir de lo planteado por las autoras, es posible afirmar que el análisis de las canciones románticas permite identificar prácticas, creencias y valores presentes en una sociedad respecto al amor, las relaciones de pareja, y el rol de los amantes, es decir, la música como una materialización de los idearios del amor a través de un artefacto cultural construído discursivamente: la música (Ospina y Suárez, 2021). Asimismo, un análisis comparativo entre las letras de canciones de dos décadas diferentes y lejanas como lo son 1960 y 2010, nos permitiría observar si existen transformaciones en lo que se entiende por amor, en cómo son las dinámicas de pareja en cada una de las épocas, en qué se valora en una relación, etc. Entendiendo, a priori, que entre estos dos momentos históricos han existido importantes cambios sociales relacionados a la libertad de la mujer, la sexualidad, nuevas formas de relacionarse románticamente, etc.
 
-Además de ser un trabajo relevante para el ámbito académico, esta investigación puede tener implicancias tanto prácticas como sociales que pueden resultar útiles para organismos encargados de diseñar políticas sobre la protección de la mujer y la violencia de género. Esto, ya que, como se desarrolló anteriormente las letras de canciones, al ser consumidas de forma masiva, no solo reflejan la cultura de la época sino que contribuyen a la construcción y perpetuación de ciertas ideas y prácticas relacionadas con el amor. Un ejemplo de esto, es que si el análisis revela que las canciones pueden romantizar o normalizar conductas que hoy se consideran como violentas o controladoras; como también se pueden observar canciones que reflejen empoderamiento, libertad sexual y consentimiento. Por lo tanto, esa información puede resultar valiosa para, por ejemplo, campañas públicas de sensibilización sobre percepciones de lo que es una relación sana. O construcción de programas educativos que aborden la violencia de género y el consentimiento utilizando ejemplos de piezas que resuenen con las juventudes. Por otro lado y de forma más ambiciosa, se podría pensar en un análisis en donde se identifiquen diversos patrones históricos en las representaciones del amor, en donde así se tenga claridad de las percepciones que se tenían y se tienen sobre la violencia de género y de esta manera, ajustar las normativas para abordar aquella problemática de forma mucho más efectiva. 
-
-
+Además de ser un trabajo relevante para el ámbito académico, esta investigación puede tener implicancias tanto prácticas como sociales que pueden resultar útiles para organismos encargados de diseñar políticas sobre la protección de la mujer y la violencia de género. Esto, ya que, como se desarrolló anteriormente las letras de canciones, al ser consumidas de forma masiva, no solo reflejan la cultura de la época sino que contribuyen a la construcción y perpetuación de ciertas ideas y prácticas relacionadas con el amor. Un ejemplo de esto, es que si el análisis revela que las canciones pueden romantizar o normalizar conductas que hoy se consideran como violentas o controladoras; como también se pueden observar canciones que reflejen empoderamiento, libertad sexual y consentimiento. Por lo tanto, esa información puede resultar valiosa para, por ejemplo, campañas públicas de sensibilización sobre percepciones de lo que es una relación sana. O construcción de programas educativos que aborden la violencia de género y el consentimiento utilizando ejemplos de piezas que resuenen con las juventudes. Por otro lado y de forma más ambiciosa, se podría pensar en un análisis en donde se identifiquen diversos patrones históricos en las representaciones del amor, en donde así se tenga claridad de las percepciones que se tenían y se tienen sobre la violencia de género y de esta manera, ajustar las normativas para abordar aquella problemática de forma mucho más efectiva.
 
 # Fuente de información: Genius
 
@@ -40,7 +38,7 @@ Genius, es una aplicación y página web fundada en el año 2009, considerada co
 
 Este código inicial es necesario para comenzar a trabajar en la sesión. Primero, instalamos el paquete "remotes" que utilizaremos para descargar el paquete "geniusr" desde github.
 
-```{r, librerias, echo=TRUE}
+```{r, librerias, echo=TRUE, message=FALSE, warning=FALSE}
 # instalar paquete de ser necesario:
 
 if (! require("remotes")) install.packages("remotes")
@@ -51,6 +49,12 @@ library(remotes)
 # el paquete "geniusr" presenta algunos errores, por lo que se debe instalar una versión más actualizada desde Github:
 remotes::install_github("giovanni-cutri/geniusr")
 
+library(dplyr)
+library(quanteda)
+library(quanteda.textstats)
+library(quanteda.textplots)
+library(ggplot2)
+
 
 ```
 
@@ -59,7 +63,7 @@ remotes::install_github("giovanni-cutri/geniusr")
 library(geniusr)
 ```
 
-Con el paquete "geniusr" cargado, creamos el token que nos permitirá trabajar con la API de Genius. 
+Con el paquete "geniusr" cargado, creamos el token que nos permitirá trabajar con la API de Genius.
 
 De ese modo, en el paso siguiente se debe crear una API y un token desde la página de Genius para poder extraer las letras. Para ello, es necesario crear una cuenta e identificar el valor de *"client access token"*.
 
@@ -74,7 +78,7 @@ genius_token()
 
 Con el token habilitado, corresponde cargar los data frames sobre los que se va a trabajar.
 
-Cargamos los data frames con las canciones. La base con las canciones actuales "canciones_2010" y la base con las canciones antiguas "canciones_1960". 
+Cargamos los data frames con las canciones. La base con las canciones actuales "canciones_2010" y la base con las canciones antiguas "canciones_1960".
 
 ```{r, canciones, echo=TRUE}
 # subimos canciones
@@ -89,10 +93,9 @@ canciones_1960 <- read.csv2("../input/data/canciones1960.csv", encoding = "utf-8
 
 El argumento encoding es necesario para indicar al software el formato específico en que se ecuentra nuestro archivo .csv.
 
+## Función
 
-## Función 
-
-A continuación, creamos la función que nos permitirá extraer las letras. Sus parametros son el *nombre de la canción* y el *nombre del artista*. 
+A continuación, creamos la función que nos permitirá extraer las letras. Sus parametros son el *nombre de la canción* y el *nombre del artista*.
 
 ```{r, funcion, echo=TRUE}
 # crear función
@@ -123,10 +126,9 @@ sacar_letras <- function(nombre_cancion, nombre_artista){
 }
 ```
 
-En el cógido presentado, se observa que, de manera secuencial, se generan los objetos necesarios para obtener el texto plano de la canción. 
+En el cógido presentado, se observa que, de manera secuencial, se generan los objetos necesarios para obtener el texto plano de la canción.
 
-
---- 
+------------------------------------------------------------------------
 
 ## Iteración con ciclo "for"
 
@@ -158,104 +160,339 @@ for (i in 1 : nrow(canciones_1960)) {
 
 De esta manera, se crean dos listas de 30 letras correspondientes a cada década, que nos servirán para el posterior análisis comparativo.
 
----
+------------------------------------------------------------------------
 
-# Análisis descriptivo
+# Código para procesar la información: *quanteda*
 
-A continuación se muestran tablas con frecuencias absolutas de algunas palabras del texto. Esta corresponde a una forma más manual y larga de hacerlo, que es previsional para el presente trabajo.
+Con el objetivo de realizar una análisis de las frecuencias de las palabras de las canciones para amabs muestras, se utilizo el paquete "quanteda".
 
-El código consiste en buscar palabras específicas con "str_count()" del paquete "stringr" y disponerlas en una tabla.
+## Corpus
 
-La selección de palabras es azarosa y preliminar. No se considera si estas son las palabras más frecuentes del texto, solo se presenta como un ejercicio preliminar de análisis de la información extraída.
+```{r}
+# 1960
 
-```{r, echo=TRUE}
+corpus_1960 <- corpus(unlist(lista_letras_1960))
 
-# texto completo para 1960:
-texto_completo_1960 <- tolower(str_c(lista_letras_1960, collapse = " "))
+# 2010
 
-# calcular la frecuencia absoluta de la palabra amor:
-veces_amor_1960 <- str_count(texto_completo_1960, "\\bamor\\b")
+corpus_2010 <- corpus(unlist(lista_letras_2010))
+```
 
-# calcular la frecuencia absoluta de la palabra mía:
-veces_mia_1960 <- str_count(texto_completo_1960, "\\bmía\\b")
 
-# calcular la frecuencia absoluta de la palabra te quiero:
-veces_tequiero_1960 <- str_count(texto_completo_1960, "\\bte quiero\\b")
+## Tokenización
 
-# calcular la frecuencia absoluta de la palabra fiel:
-veces_fiel_1960 <- str_count(texto_completo_1960, "\\bfiel\\b")
+```{r}
+# tokenizar corpus
 
-# calcular la frecuencia absoluta de la palabra rosas:
-veces_rosas_1960 <- str_count(texto_completo_1960, "\\brosas\\b")
+# 1960
 
-# calcular la frecuencia absoluta de la palabra corazón:
-veces_corazon_1960 <- str_count(texto_completo_1960, "\\bcorazón\\b")
+toks_1960 <-  corpus_1960 %>% 
+  tokens()
 
-# agrupamos los vectores en un data frame:
-palabras_letra_1960 <- data.frame(veces_amor_1960, veces_corazon_1960, veces_mia_1960, veces_fiel_1960, veces_rosas_1960, veces_tequiero_1960)
+# 2010
 
- 
-# texto completo para 2010:
-texto_completo_2010 <- tolower(str_c(lista_letras_2010, collapse = " "))
+toks_2010 <-  corpus_2010 %>% 
+  tokens()
+```
 
-# calcular la frecuencia absoluta de la palabra amor:
-veces_amor_2010 <- str_count(texto_completo_2010, "\\bamor\\b")
 
-# calcular la frecuencia absoluta de la palabra mía:
-veces_mia_2010 <- str_count(texto_completo_2010, "\\bmía\\b")
+## Matriz DFM
 
-# calcular la frecuencia absoluta de la palabra te quiero:
-veces_tequiero_2010 <- str_count(texto_completo_2010, "\\bte quiero\\b")
+Previemente a generar la matriz DFM, se decidió metodolgicmaente seleccionar las stopwords de forma manual, con tal de: por una parte, mantener aquellas que podrías ser relevantes en el análisis, y por otro, añadir palabras que el paquete de quanteda no considera en su lista de stopwords –como por ejemplo, si, eh, así, bien, entre otras–. 
 
-# calcular la frecuencia absoluta de la palabra fiel:
-veces_fiel_2010 <- str_count(texto_completo_2010, "\\bfiel\\b")
 
-# calcular la frecuencia absoluta de la palabra rosas:
-veces_rosas_2010 <- str_count(texto_completo_2010, "\\brosas\\b")
+```{r}
+stopwords_personalizadas <- c("así", "bien", "hoy", "sé", "aunque", "de", "la", "que", "el", "en", "y", "a", "los", "del", "se", "las", "por", "un", "para", "con", "no", "una", "su", "al","lo", "como", "más", "mas", "pero", "sus", "le", "ya", "o","este", "sí", "si", "porque", "eh", "esta", "entre", "cuando","muy", "sin", "sobre", "también", "me", "hasta", "hay", "donde", "quien", "desde", "todo", "nos", "durante", "todos", "uno", "les", "ni", "contra", "otros", "ese","eso", "ante", "ellos", "e", "esto", "mí", "antes", "algunos",
+ "qué", "unos", "yo", "otro", "otras", "otra", "él", "tanto","esa", "estos", "mucho", "quienes", "nada", "muchos", "cual","poco", "ella", "estar", "estas", "algunas", "algo", "nosotros", "mi", "mis", "tú", "te", "ti", "tu", "tus", "ellas", "nosotras", "vosotros", "vosotras", "os", "míos", "mías", "suyo", "suya", "suyos", "suyas", "nuestro", "nuestra", "nuestros", "nuestras","vuestro", "está", "estamos", "estáis", "están", "esté", "estés", "estemos", "estéis", "estén", "estaré", "estarás", "estará", "estaremos", "estaréis", "estarán", "estaría", "estarías", "estaríamos", "estaríais", "estarían", "estaba", "estabas","estábamos", "estabais", "estaban", "estuve", "estuviste", "estuvo","estuimos", "estuvisteis", "estuvieron", "estuviera", "estuvieras", "estuviéramos", "estuvierais", "estuvieran", "estuviese", "estuvieses","estuviésemos", "estuvieseis", "estuviesen", "estando", "estado", "estada","estados", "estadas", "estad", "he", "has", "ha", "hemos", "habéis", "han", "haya", "hayas", "hayamos", "hayáis", "hayan", "habré", "habrás", "habrá", "habremos", "habréis", "habrán", "habría", "habrías", "habríamos", "habríais","habrían", "había", "habías", "habíamos", "habíais", "habían", "hube", "hubiste","hubo", "hubimos", "hubisteis", "hubieron", "hubiera", "hubieras", "hubiéramos", "hubierais", "hubieran", "hubiese", "hubieses", "hubiésemos", "hubieseis", "hubiesen", "habiendo", "habido", "habida", "habidos", "habidas", "soy", "eres", "es", "somos", "sois", "son", "sea", "seas", "seamos", "seáis", "sean", "seré","serás", "será", "seremos", "seréis", "serán", "sería", "serías","seríamos", "seríais", "serían", "era", "eras", "éramos", "erais", "eran", "fui", "fuiste", "fue", "fuimos", "fuisteis", "fueron", "fuera", "fueras", "fuéramos", "fuerais", "fueran", "fuese", "fueses","fuésemos", "fueseis", "fuesen", "siendo", "sido", "tengo", "tienes", "tiene", "tenemos", "tenéis", "tienen", "tenga", "tengas", "tengamos","tengáis", "tengan", "tendré", "tendrás", "tendrá", "tendremos","tendréis", "tendrán", "tendría", "tendrías", "tendríamos","tendríais", "tendrían", "tenía", "tenías", "teníamos", "teníais", "tenían", "tuve", "tuviste", "tuvo", "tuvimos", "tuvisteis", "tuvieron", "tuviera", "tuvieras", "tuviéramos", "tuvierais", "tuvieran", "tuviese", "tuvieses", "tuviésemos", "tuvieseis", "tuviesen", "teniendo", "tenido", "tenida",  "tenidos", "tenidas", "tened", "hoh", "oh", "ay", "uah", "ooh", "estoy", "va", "pa", "mejor", "yeh", "hace", "ser", "voy", "ra", "vez","ding", "dong", "aquel", "aquí", "puedo")
 
-# calcular la frecuencia absoluta de la palabra corazón:
-veces_corazon_2010 <- str_count(texto_completo_2010, "\\bcorazón\\b")
+```
 
-# agrupamos los vectores en un data frame:
-palabras_letra_2010 <- data.frame(veces_amor_2010, veces_corazon_2010, veces_mia_2010, veces_fiel_2010, veces_rosas_2010, veces_tequiero_2010)
+```{r}
+# matriz dfm 
+
+  # 1960
+
+dfm_1960 <- toks_1960 %>%
+  tokens_select(pattern = stopwords_personalizadas, selection = "remove") %>% # remover stopwords
+  dfm()  
+
+  # 2010
+
+dfm_2010 <- toks_2010 %>%
+  tokens_select(pattern = stopwords_personalizadas, selection = "remove") %>% # remover stopwords
+  dfm()
+```
+
+
+## TF-IDF
+
+## Similitud coseno:
+
+# Código para analizar la información
+
+## Frecuencias de palabras
+
+### Función: objeto_palabra
+
+```{r}
+objeto_palabra <- function(dfm_obj) {
+  
+  # caclulamos las 20 palabras más frecuenctes
+  palabras <- dfm_obj %>% 
+    quanteda::topfeatures(n = 20)
+  
+  #convertimos en un data frame
+  resultado <- data.frame(palabra = names(palabras), #geenramos variable palabras
+                          freq = as.numeric(palabras))#generamos variable freq
+
+    
+    return(resultado)
+}
+
+p1960 <- objeto_palabra(dfm_1960)
+p2010 <- objeto_palabra(dfm_2010)
+```
+
+
+```{r, plot-freq-1960, echo=TRUE}
+plot<-ggplot(p1960,aes(x=palabra,y=freq))+
+  geom_bar(stat = "identity", 
+           color="palevioletred4", 
+           fill = "palevioletred") +
+  scale_y_continuous(limits = c(0, 100)) +
+  labs(title = "Frecuencias palabras más repetidas en las canciones de 1960", 
+      x = "Palabras", 
+      y = "Frecuencia",
+      caption = "Fuente: Elaboración propia.") +
+  theme(axis.text.x = element_text(angle = 40, hjust = 1),  # Rotar las etiquetas del eje X 
+        plot.title = element_text(size = 12,
+                                  face = "italic", 
+                                  color = "black", hjust = 0.5),
+        plot.margin = margin(t = 20, r = 20, b = 20, l = 20)) +
+  geom_text(aes(label = paste0(round(freq, 1))), 
+            stat = "identity", 
+            vjust = -0.5, 
+            color = "black",
+            position = position_dodge(width=0.9), 
+            size = 4) +
+  theme_bw() 
+
+plot
+```
+
+```{r, plot-freq-2010, echo=TRUE}
+plot0<-ggplot(p2010,aes(x=palabra,y=freq))+
+  geom_bar(stat = "identity", 
+           color="palevioletred4", 
+           fill = "palevioletred1") +
+  scale_y_continuous(limits = c(0, 100)) +
+  labs(title = "Frecuencias palabras más repetidas en las canciones de 2010", 
+       x = "Palabras", 
+       y = "Frecuencia",
+       caption = "Fuente: Elaboración propia.") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1), 
+        plot.title = element_text(size = 12,
+                                  face = "italic", 
+                                  color = "black", hjust = 0.5),
+        plot.margin = margin(t = 20, r = 20, b = 20, l = 20)) +
+  geom_text(aes(label = paste0(round(freq, 1))), 
+            stat = "identity", 
+            vjust = -0.5, 
+            color = "black",
+            position = position_dodge(width=0.9), 
+            size = 4) +
+  theme_bw() 
+
+plot0
+```
+
+
+## Explorar tópicos en cómun
+
+```{r}
+# explorar topicos en común
+
+keywords <- c("amor", "quiero", "corazón", "noche", "nunca", "siempre", "vida", "solo", "nadie", "mañana")
+
+contexto_letras_1960 <- list()
+contexto_letras_2010 <- list()
+
+for (i in keywords) {
+  contexto_letras_1960[[i]] <- toks_1960 %>% kwic(pattern = i, window = 7)
+}
+
+for (i in keywords) {
+  contexto_letras_2010[[i]] <- toks_2010 %>% kwic(pattern = i, window = 7)
+}
+```
+
+```{r}
+generar_tabla <- function(contexto_letras_list, i) { 
+  
+  letra <- contexto_letras_list[[i]] 
+  
+  letra <- as.data.frame(letra) %>% select(pre, keyword, post)
+  
+  tabla <- letra %>% knitr::kable(format = "html",
+                                  aling = "c",
+                                  col.names = c("Oración anterior", "Palabra", "Oración posterior")) %>% 
+    kableExtra::kable_material()
+  return(tabla)
+}
 
 
 ```
 
-El siguiente código nos permite disponer la información calculada en tablas:
 
-```{r, echo=TRUE}
+### Amor 
 
-# instalar el paquete de ser necesario:
-if (! require("kableExtra")) install.packages("kableExtra")
-
-# cargamos el paquete:
-library(kableExtra)
-
-# generamos tabla para las letras de 2010:
-palabras_letra_2010 %>% kableExtra::kable(
-  # ajustamos los títulos de las columnas:
-    col.names = c("Frecuencia: amor", "Frecuencia: corazón", "Frecuencia: mía", "Frecuencia: fiel", "Frecuencia: rosas", "Frecuencia: te quiero"))
-
-# generamos tabla para las letras de 1960:
-palabras_letra_1960 %>% kableExtra::kable(
-  # ajustamos los títulos de las columnas:
-    col.names = c("Frecuencia: amor", "Frecuencia: corazón", "Frecuencia: mía", "Frecuencia: fiel", "Frecuencia: rosas", "Frecuencia: te quiero"))
+#### 1960
+```{r}
+generar_tabla(contexto_letras_1960, "amor")
 ```
 
-<br/>
-
-Es posible observar preliminarmente que las palabras "corazón" y "fiel" se repiten más veces en las canciones de la década de 2010 que en la década de 1960. Al contrario, en las canciones del 1960, aparecen con más frecuencia las palabras "mía", "rosas" y "te quiero". La palabra "amor" se observa en una frecuencia similar para las caciones de ambas décadas.
-
---- 
-# Referencias 
-
-- Apple Music. (2024). 2010s Love Song Essentials [Lista de Reproducción]. Apple  Music. Obtenido de <https://music.apple.com/cl/playlist/2010s-love-song-essentials/pl.a4e1706901964f46b1abe8dd0e16e2e0?l=en-GB>
-- Apple Music. (2024). ’60s Love Song Essentials [Lista de Reproducción]. Apple  Music. Obtenido de <https://music.apple.com/cl/playlist/60s-love-song-essentials/pl.048e966cda9340fe9ce76efa890bf055?l=en-GB>
-- Genius. (27 de Agosto de 2009). Genius: About Us. Obtenido de <https://genius.com/Genius-about-genius-annotated>
-- Martínez, D. (2013). Música y representaciones sociales de la sexualidad: un estudio de caso sobre los jóvenes reggaetoneros en el Distrito Federal. Obtenido de: <https://hdl.handle.net/11191/5647>
-- Ospina, S. & Suárez, M. (2021). Para amarte, necesito una razón: configuraciones del discurso amoroso en las canciones románticas en español.
-- Sánchez, A. C. (2011). Las diferencias y similitudes semánticas existentes en veinte letras de amor de reggaetón y bolero puertorriqueños. Recuperado de: <http://hdl.handle.net/10554/5935>
+#### 2010
+```{r}
+generar_tabla(contexto_letras_2010, "amor")
+```
 
 
- 
+### Quiero
+
+
+#### 1960
+```{r}
+generar_tabla(contexto_letras_1960, "quiero")
+```
+
+#### 2010
+```{r}
+generar_tabla(contexto_letras_2010, "quiero")
+```
+
+
+### Noche
+
+
+#### 1960
+```{r}
+generar_tabla(contexto_letras_1960, "noche")
+```
+
+#### 2010
+```{r}
+generar_tabla(contexto_letras_2010, "noche")
+```
+
+
+### Vida
+
+
+#### 1960
+```{r}
+generar_tabla(contexto_letras_1960, "vida")
+```
+
+#### 2010
+```{r}
+generar_tabla(contexto_letras_2010, "vida")
+```
+
+
+### Solo
+
+
+#### 1960
+```{r}
+generar_tabla(contexto_letras_1960, "solo")
+```
+
+#### 2010
+```{r}
+generar_tabla(contexto_letras_2010, "solo")
+```
+
+
+### Nadie
+
+
+#### 1960
+```{r}
+generar_tabla(contexto_letras_1960, "nadie")
+```
+
+#### 2010
+```{r}
+generar_tabla(contexto_letras_2010, "nadie")
+```
+
+
+### Mañana
+
+
+#### 1960
+```{r}
+generar_tabla(contexto_letras_1960, "mañana")
+```
+
+#### 2010
+```{r}
+generar_tabla(contexto_letras_2010, "mañana")
+```
+
+
+### Corazón
+
+#### 1960
+```{r}
+generar_tabla(contexto_letras_1960, "corazón")
+```
+
+#### 2010
+```{r}
+generar_tabla(contexto_letras_2010, "corazón")
+```
+`
+
+
+### Siempre
+
+#### 1960
+```{r}
+generar_tabla(contexto_letras_1960, "siempre")
+```
+
+#### 2010
+```{r}
+generar_tabla(contexto_letras_2010, "siempre")
+```
+
+
+## Explorar similitud coseno con canciones populares
+
+Para trabajar con la matriz de similitud coseno se seleccionaron dos canciones de cada listado (1960 y 2010). Estas fueron elegidas según el mayor número de reproducciones en la plataforma de YouTube: el criterio de selección no pretende vincular el número de reproducciones con la validez –en términos de aceptación y popularidad del mensaje–  que puedan tener las perspectivas del amor expuestas en las letras, si no que apunta a que las canciones más reproducidas son las que, en términos de frecuencia, transmiten “más” ideales sobre el amor.
+
+
+### 1960
+
+A. 
+
+B. 
+
+### 2010 
+
+A. 
+
+B. 
+
+
+------------------------------------------------------------------------
+
+# Referencias
+
+-   Apple Music. (2024). 2010s Love Song Essentials \[Lista de Reproducción\]. Apple Music. Obtenido de <https://music.apple.com/cl/playlist/2010s-love-song-essentials/pl.a4e1706901964f46b1abe8dd0e16e2e0?l=en-GB>
+-   Apple Music. (2024). '60s Love Song Essentials \[Lista de Reproducción\]. Apple Music. Obtenido de <https://music.apple.com/cl/playlist/60s-love-song-essentials/pl.048e966cda9340fe9ce76efa890bf055?l=en-GB>
+-   Genius. (27 de Agosto de 2009). Genius: About Us. Obtenido de <https://genius.com/Genius-about-genius-annotated>
+-   Martínez, D. (2013). Música y representaciones sociales de la sexualidad: un estudio de caso sobre los jóvenes reggaetoneros en el Distrito Federal. Obtenido de: <https://hdl.handle.net/11191/5647>
+-   Ospina, S. & Suárez, M. (2021). Para amarte, necesito una razón: configuraciones del discurso amoroso en las canciones románticas en español.
+-   Sánchez, A. C. (2011). Las diferencias y similitudes semánticas existentes en veinte letras de amor de reggaetón y bolero puertorriqueños. Recuperado de: <http://hdl.handle.net/10554/5935>
